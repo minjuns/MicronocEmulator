@@ -1,7 +1,7 @@
 # MicronocEmulator
 MicroNOC Emulator
 
-Due to use of worker (thread), index.html must be loaded from server.
+Due to use of worker (thread), index.html must be loaded from server. Local simple server can be used for this.
 
 
 > npm install -g webserver.local
