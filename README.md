@@ -8,8 +8,8 @@ Due to use of worker (thread), index.html must be loaded from server. Local simp
 
 > webserver.local
 
-⚡️ http://127.0.0.1:3000/customerid=MicroNOC
-⚡️ http://127.0.0.1:3000/customerid=MFP
+⚡️ http://127.0.0.1:3000/?customerid=MicroNOC
+⚡️ http://127.0.0.1:3000/?customerid=MFP
 
 (Note that only two customers are ready at this moment)
 
