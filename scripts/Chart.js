@@ -1,8 +1,13 @@
 export class Chart {
+    // fields
+    updateChartOnResize
+
     constructor(type) {
       this.data = [];
       this.chart = null;
-    
+      this.updateChartOnResize = false;
+      this.manualUpdate = (chart, d3) => {};
+
       var option ={ duration: 300, useInteractiveGuideline: true}
       if(type == 'line') {
         this.chart = nv.models.lineChart()
@@ -10,31 +15,40 @@ export class Chart {
         this.chart = nv.models.multiBarChart()
       }
     }
+    // Setter and Getter
+    get updateChartOnResize() {
+      return this.updateChartOnResize
+    }
+    set updateChartOnResize(boolValue) {
+      this.updateChartOnResize = boolValue
+    }
     attachToDiv(divid) {
       this.divid = divid;
+      
       d3.select(divid).append('svg')
           .datum(this.data)
           .call(this.chart);
+      //this.onResize();      
+      this.manualUpdate(this, d3);
+      nv.utils.windowResize(this.onResize.bind(this));
+    }
+    onResize() {
+      
+      if( this.updateChartOnResize) {
+        this.chart.update();
+        this.manualUpdate(this, d3);
+      }
+    }
+    setManualUpdate(fn) {
+      this.manualUpdate = fn;
     }
     setData(data) {
       this.data = data;
     }
     getxAxis() {
-      this.chart.xAxis
-          .axisLabel("Time (s)")
-          .tickFormat(d3.format(',.1f'))
-          .staggerLabels(true)
       return this.chart.xAxis
     }
     getyAxis() {
-      this.chart.yAxis
-          .axisLabel('Voltage (v)')
-          .tickFormat(function(d) {
-              if (d == null) {
-                  return 'N/A';
-              }
-              return d3.format(',.2f')(d);
-          })
       return this.chart.yAxis
     }
     getChart() {
@@ -42,6 +56,12 @@ export class Chart {
     }
     getChartContainer() {
       return $(this.divid)
+    }
+    forceY(y) {
+      this.chart.forceY(y);
+    }
+    forceX(x) {
+      this.chart.forceX(x);
     }
     hide() {
       this.getChartContainer().hide('slow')

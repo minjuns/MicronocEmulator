@@ -84,14 +84,14 @@ onmessage = function(e) {
 
         for( let i = 0 ; i < this.all15.data.length; i++) {
           let ref = this.all15.data;
-
+          // All days
           let key1 = ref[i]['x'].getFullYear() + "" + _pad(ref[i]['x'].getMonth()+1) + "" + _pad(ref[i]['x'].getDate());
           if(!this.alldays[key1]) {
             this.alldays[key1] = {}
             this.alldays[key1]['data'] = []
           }
           this.alldays[key1]['data'].push(ref[i])
-
+          // All days 16-21
           if (ref[i]['x'].getHours() >= 16 && ref[i]['x'].getHours() <= 21) {
             if(!this.alldays_1621[key1]) {
               this.alldays_1621[key1] = {}
@@ -99,14 +99,14 @@ onmessage = function(e) {
             }
             this.alldays_1621[key1]['data'].push(ref[i])     
           }
-
+          // All months
           let key2 = ref[i]['x'].getFullYear() + "" + _pad(ref[i]['x'].getMonth()+1);
           if(!this.allmonth[key2]) {
             this.allmonth[key2] = {}
             this.allmonth[key2]['data'] = []
           }
           this.allmonth[key2]['data'].push(ref[i])
-          
+          // All months 16-21
           if (ref[i]['x'].getHours() >= 16 && ref[i]['x'].getHours() <= 21) {
             if(!this.allmonth_1621[key2]) {
               this.allmonth_1621[key2] = {}
@@ -116,19 +116,66 @@ onmessage = function(e) {
           }
           
         }
+        // get stat for alldays
         for (const [key, value] of Object.entries(this.alldays)) {
           var ref = this.alldays[key].data;
           this.alldays[key]['stat'] = getStat(ref);
-          
         }
+        var _min_alldays = Number.MAX_VALUE;
+        var _max_alldays = Number.MIN_VALUE;
+        var _sum_alldays = 0;
+        var _min_alldays_obj = null;
+        var _max_alldays_obj = null;
+        var _alldays_cnt = 0;
+        for (const [key, value] of Object.entries(this.alldays)) {
+          var ref = this.alldays[key].stat;
+          _min_alldays = (ref.min < _min_alldays) ? ( () => { _min_alldays_obj = ref; return ref.min;})() : _min_alldays;
+          _max_alldays = (ref.max > _max_alldays) ? ( () => { _max_alldays_obj = ref; return ref.max;})()  : _max_alldays;
+          _sum_alldays += ref.sum;
+          _alldays_cnt++;
+        }
+        this.alldays['stat'] = {}
+        this.alldays['stat']['min'] = _min_alldays
+        this.alldays['stat']['max'] = _max_alldays
+        this.alldays['stat']['sum'] = _sum_alldays
+        this.alldays['stat']['avg'] = _sum_alldays / _alldays_cnt;
+        this.alldays['stat']['minObj'] = _min_alldays_obj
+        this.alldays['stat']['maxObj'] = _max_alldays_obj
+        console.log(_alldays_cnt)
+        // get stat for alldays 16-21
         for (const [key, value] of Object.entries(this.alldays_1621)) {
           var ref = this.alldays_1621[key].data;
           this.alldays_1621[key]['stat'] = getStat(ref);
         }        
+        var _min_alldays_1621 = Number.MAX_VALUE;
+        var _max_alldays_1621 = Number.MIN_VALUE;
+        var _sum_alldays_1621 = 0;
+        var _min_alldays_obj_1621 = null;
+        var _max_alldays_obj_1621 = null;
+        var _alldays_1621_cnt = 0;
+        for (const [key, value] of Object.entries(this.alldays_1621)) {
+          var ref = this.alldays_1621[key].stat;
+          _min_alldays_1621 = (ref.min < _min_alldays_1621) ? ( () => { _min_alldays_obj_1621 = ref; return ref.min;})() : _min_alldays_1621;
+          _max_alldays_1621 = (ref.max > _max_alldays_1621) ? ( () => { _max_alldays_obj_1621 = ref; return ref.max;})()  : _max_alldays_1621;
+          _sum_alldays_1621 += ref.sum;
+          _alldays_1621_cnt++;
+        }
+        this.alldays_1621['stat'] = {}
+        this.alldays_1621['stat']['min'] = _min_alldays
+        this.alldays_1621['stat']['max'] = _max_alldays
+        this.alldays_1621['stat']['sum'] = _sum_alldays_1621
+        this.alldays_1621['stat']['avg'] = _sum_alldays_1621 / _alldays_1621_cnt;
+        this.alldays_1621['stat']['minObj'] = _min_alldays_obj
+        this.alldays_1621['stat']['maxObj'] = _max_alldays_obj
+        console.log(_alldays_1621_cnt)
+        
+        
+        // get stat for all month
         for (const [key, value] of Object.entries(this.allmonth)) {
           var ref = this.allmonth[key].data;
           this.allmonth[key]['stat'] = getStat(ref);
         }
+        // get stat for all month 16-21
         for (const [key, value] of Object.entries(this.allmonth_1621)) {
           var ref = this.allmonth_1621[key].data;
           this.allmonth_1621[key]['stat'] = getStat(ref);
