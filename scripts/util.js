@@ -10,3 +10,20 @@ export let getCustomerIDFromURL = () => {
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get('customerid')
 }
+// // shortcut for document.querySelectorAll
+// function $$(expr, con) {
+//   return Array.prototype.slice.call((con || document).querySelectorAll(expr));
+// }
+
+// // hide an element
+// function hide(el) {
+//   el.style.display = 'none';
+// }
+
+// // hide all divs via forEach
+// $$('div').forEach(hide); 
+
+// // hide all divs via for
+// for (var divs = $$('div'), i = 0; i < divs.length; i++) {
+//   hide(divs[i])
+// }

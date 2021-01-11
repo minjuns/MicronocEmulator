@@ -58,27 +58,15 @@
 
           <div class="mdl-card__supporting-text mdl-color-text--grey-600">
             <p>Add two numbers using a server side function. Enter the two numbers:</p>
-
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label number-input">
-                <input class="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?" id="first-number">
-                <label class="mdl-textfield__label" for="first-number">Number...</label>
-                <span class="mdl-textfield__error">Input is not a number!</span>
-              </div>
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label number-input">
-                <input class="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?" id="second-number">
-                <label class="mdl-textfield__label" for="second-number">Number...</label>
-                <span class="mdl-textfield__error">Input is not a number!</span>
-              </div>
-              <button id="send-addition-button" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect">Add the two numbers</button>
-
-            <div id="chart1"></div>
-            <div id="chart2"></div>
-            <div id="chart3"></div>
-            <div id="chart4"></div>
+            <select name="customerSelect" id="customerSelect"></select>
+            <button id="send-addition-button" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect">Hello</button>
+            <!-- Dynamic contents-->
+            <div id="basicPanel">
+ 
+            </div>  
+            <!-- End Dynamic contents-->
           </div>
-
         </div>
-
       </div>
     </section>
   </main>
@@ -87,7 +75,7 @@
     <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the &apos;x&apos; icon.</p>
   </div>
   <div id="loading" title="Message" style="display:none">
-    <p>Data is being loaded</p>
+    Data is being loaded
   </div>
 
 </div>
