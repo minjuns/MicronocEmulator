@@ -8,11 +8,7 @@ var handler = function(app, data, error) {
     console.log('Error' + error);
     return;
   }
-  
-  
-  
-  
-
+  // Chart1
   app.print("15min example")
   app.printHTML(`<div id="chart1"></div>`);
   var chart1 = new Chart('line')
@@ -29,6 +25,7 @@ var handler = function(app, data, error) {
   });
   chart1.attachToDiv('#chart1');
 
+  // Chart2
   app.print("All Month Max Peak")
   app.printHTML(`<div id="chart2"></div>`);
   var chart2 = new Chart('multibar')
@@ -52,6 +49,7 @@ var handler = function(app, data, error) {
   });
   chart2.attachToDiv('#chart2');
 
+  // Chart3
   app.print("All Month Max Peak 333")
   app.printHTML(`<div id="chart3"></div>`);
   var chart3 = new Chart('multibar')
@@ -74,7 +72,7 @@ var handler = function(app, data, error) {
   });
   chart3.attachToDiv('#chart3');
 
-
+  // Chart 4
   app.print("15min example - 4 to 9pm")
   app.printHTML(`<div id="chart4"></div>`);
   var chart4 = new Chart('line')
@@ -85,11 +83,11 @@ var handler = function(app, data, error) {
     .axisLabel("Day").showMaxMin(false)
   chart4.attachToDiv('#chart4');
 
-  // Handling
-  app.printHTML(`<button id="bt1"> Toggle chart 4</button>`)
+  // Other dynamic UI and handling
+  app.printHTML(`<button id="bt1"> Hide chart 4</button>`)
   $('#bt1').button(); //Optional: jQueryUI for UI enhancement
   $('#bt1').on('click', function(e) {
-    $('#chart4').toggle('slow')
+    chart4.hide();
   });
 };
 
