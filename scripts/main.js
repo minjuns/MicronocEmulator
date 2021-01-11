@@ -45,6 +45,7 @@ var handler = function(app, data, error) {
       function(e){
         console.log(chart);
           console.log(e);
+          app.showDialogMessage('clicked', JSON.stringify(e));
       });
   });
   chart2.attachToDiv('#chart2');
@@ -68,6 +69,7 @@ var handler = function(app, data, error) {
       function(e){
         console.log(chart);
           console.log(e);
+          app.showDialogMessage('clicked', JSON.stringify(e));
       });
   });
   chart3.attachToDiv('#chart3');
