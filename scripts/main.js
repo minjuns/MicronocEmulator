@@ -74,41 +74,6 @@ var handler = function(app, data, error) {
   });
   chart3.attachToDiv('#chart3');
 
-  // app.print("All Days Max Peak")
-  // app.printHTML(`<div id="chart3"></div>`);
-  // var chart3 = new Chart('multibar')
-  // var chart3_values = Object.entries(data.allmonth).map( ([k,v]) => { return {x:v.data[0].x, y:v.stat.max} })//Object.entries(data.alldays).slice(0,-1).map( ([k,v]) => { return {x:v.data[0].x, y:v.stat.max} })
-  // chart3_values[10].color = "red";
-  // chart3_values[11].color = "red";
-  // chart3_values[12].color = "red";
-  // chart3.setData(
-  //   [
-  //     {
-  //       key: 'MaxPeak', 
-  //       values: chart3_values, 
-  //       color: "gray"}
-  //   ]
-  // )
-  // chart3.getxAxis().tickFormat(function(d) { return d3.time.format('%m/%d/%Y')(new Date(d)); })
-  // chart3.getxAxis().axisLabel("Day").showMaxMin(false)
-  // chart3.updateChartOnResize = true;
-  // chart3.setManualUpdate( (chart, d3) => {
-  //   console.log('manual update ')
-  //   d3.selectAll("#chart3 rect.nv-bar").on('click',function(e){
-  //     console.log(e); 
-  //   });    
-  
-  //   d3.selectAll("#chart3 rect.nv-bar").on('click',
-  //   function(e){
-  //     console.log(e);
-  //   });
-  //   d3.selectAll('#chart3 rect.nv-bar')
-  //   .style('fill', function(each, i){
-  //     // console.log(each)
-  //     // each.on('click', function(e) {console.log(e)})
-  //   })    
-  // });
-  // chart3.attachToDiv('#chart3');
 
   app.print("15min example - 4 to 9pm")
   app.printHTML(`<div id="chart4"></div>`);
